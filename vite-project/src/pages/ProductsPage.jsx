@@ -8,6 +8,7 @@ import Loader from "../components/Loader";
 import styles from "./ProductsPage.module.css";
 //icons
 import { ImSearch } from "react-icons/im";
+import { FaListUl } from "react-icons/fa";
 
 function ProductsPage() {
   const products = useProducts();
@@ -18,6 +19,15 @@ function ProductsPage() {
   const searchHandeler = ()=>{
     console.log(search);
   }
+
+  const categoryHandeler = (event) => {
+    const {tagName} = event.target;
+    const  catagory = event.target.innerText.toLowerCase();
+
+    if (tagName !== "LI") return;
+    console.log(catagory);
+  };
+  
   return (
     <>
     <div>
@@ -37,7 +47,19 @@ function ProductsPage() {
           <Card key={product.id} data={product}/>
         ))}
     </div>
-    <div>sidebar</div>
+    <div>
+      <div>
+      <FaListUl />
+      <p>Categories</p>
+      </div>
+      <ul onClick={categoryHandeler}>
+        <li>All</li>
+        <li>Eelectronics</li>
+        <li>Jewelery</li>
+        <li>Men's clothing</li>
+        <li>Women's clothing</li>
+      </ul>
+    </div>
     </div>
     </>
   )
