@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 //context
 import { useProducts } from "../context/ProductContext"
 //components
@@ -9,23 +9,35 @@ import styles from "./ProductsPage.module.css";
 //icons
 import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
+//helper
+import { filterProducts, searchProducts } from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
-  console.log(products);
 
+  const [displayed,setDisplayed]=useState([]);
   const [search,setSearch]=useState("");
+  const [query,setQuery]=useState({});
+
+  useEffect(()=> {
+    setDisplayed(products);
+  },[products]);
+
+  useEffect(()=>{ 
+    let finalProducts = searchProducts(products,query.search);
+    finalProducts = filterProducts(finalProducts,query.category);
+    setDisplayed(finalProducts);
+  },[query]);
 
   const searchHandeler = ()=>{
-    console.log(search);
-  }
+   setQuery((query)=> ({...query,search}));
+  };
 
   const categoryHandeler = (event) => {
     const {tagName} = event.target;
-    const  catagory = event.target.innerText.toLowerCase();
-
+    const  category = event.target.innerText.toLowerCase();
     if (tagName !== "LI") return;
-    console.log(catagory);
+    setQuery((query)=>({...query,category}));
   };
   
   return (
@@ -41,10 +53,10 @@ function ProductsPage() {
     </div>
     <div className={styles.container}>
     <div className={styles.products}>
-      {!products.length && <Loader/>}
+      {!displayed.length && <Loader/>}
       {
-        products.map ((product) =>(
-          <Card key={product.id} data={product}/>
+        displayed.map ((p) =>(
+          <Card key={p.id} data={p}/>
         ))}
     </div>
     <div>
@@ -54,7 +66,7 @@ function ProductsPage() {
       </div>
       <ul onClick={categoryHandeler}>
         <li>All</li>
-        <li>Eelectronics</li>
+        <li>Electronics</li>
         <li>Jewelery</li>
         <li>Men's clothing</li>
         <li>Women's clothing</li>
