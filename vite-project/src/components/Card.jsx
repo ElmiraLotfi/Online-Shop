@@ -31,22 +31,22 @@ function Card({data}) {
         <TbListDetails />
         </Link>
        <div>
-       {quantity === 1 && ( 
-      <button onClick= {() => clickHandeler("REMOVE_ITEM")}>
-        <MdDeleteOutline /></button>
-      )}
+      {quantity === 1 && ( 
+        <button onClick= {() => clickHandeler("REMOVE_ITEM")}>
+          <MdDeleteOutline /></button>
+        )}
       {quantity > 1 && (  
         <button onClick= {() => clickHandeler("DECREASE")}>-</button>
       )}
-    {!!quantity && <span>{quantity}</span>}
-        { quantity === 0 ? (
+      {!!quantity && <span>{quantity}</span>}
+      { quantity === 0 ? (
         <button onClick= {() => clickHandeler("ADD_ITEM")}>
           <TbShoppingBagCheck />
           </button>
-        ):(
-        <button onClick= {() => clickHandeler("INCREASE")}>+</button>
+          ):(
+          <button onClick= {() => clickHandeler("INCREASE")}>+</button>
       )}
-      </div>
+    </div>
     </div>
     </div>
   )
