@@ -1,5 +1,6 @@
 .container{
     width: 100%;
+    min-height: 1000px;
     margin: 0 auto;
     padding: 0 10px;
     align-items: center;

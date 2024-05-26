@@ -32,3 +32,10 @@
     color: #fe5d42;
     border-radius: 10px;
 }
+@media only screen and (max-width:840px) {
+.sidebar{
+    width: 100%;
+    margin: 10px auto;
+}
+  }
+   
