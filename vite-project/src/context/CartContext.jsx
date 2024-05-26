@@ -43,7 +43,7 @@ switch(action.type){
     ...state,
     ...sumProducts(state.selectedItems),
     };
-  case "CHEAKOUT":
+  case "CHEKOUT":
     return{
       selectedItems:[],
       itemsCounter:0,

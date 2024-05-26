@@ -1,0 +1,26 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    min-height: 1000px;
+}
+.Empty{
+    min-height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+
+}
+.Empty image{
+    margin-bottom: 5px;
+}
+.Empty p{
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fe5d24;
+}
+.products{
+    width: 100%;
+}
